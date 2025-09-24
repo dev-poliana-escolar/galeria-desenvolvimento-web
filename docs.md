@@ -128,3 +128,77 @@ Existem outros métodos!
 
 > two-way data binding (vinculação bidirecional de dados): é um conceito que se refere à sincronização automática entre a visão (interface do usuário) e o modelo (dados ou lógica de negócios) em aplicações.
 
+---
+
+### Por que usamos `[(ngModel)]`?
+
+Quando o valor do _select_ muda, ele atualiza a variável **numero_slc**. E quando **numero_slc** muda no TypeScript, o valor exibido no _select_ também muda automaticamente.
+
+
+
+---
+
+# Estrutura de repetição e condicionais
+
+Neste exemplo, fizemos uma tabuada simples.
+
+```ts
+@Component({
+  selector: 'app-root',
+  imports: [FormsModule],
+  template: `
+    <h2>Tabuada em Angular</h2>
+    <hr/>
+    <p>
+      Número:
+      <select [(ngModel)] = "numero_slc">
+        <option [ngValue]= "0">Selecione um número</option>
+         @for (numero of numeros; track numero){
+          <option [ngValue]= "numero">{{numero}}</option>
+         }
+      </select>
+    </p>
+
+    <hr/>
+
+    @if (numero_slc > 0){
+    Resultado:
+    <ul>
+      @for (numero of numeros; track numero){
+        <li>{{numero}} x {{numero_slc}} = {{numero * numero_slc}}</li>
+      }
+      
+    </ul>
+    }
+   
+    
+      
+  `,
+})
+export class PlaygroundComponent {
+  numero_slc = 1;
+  numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  
+}
+
+bootstrapApplication(PlaygroundComponent);
+```
+
+---
+
+- `track`: Otimiza a renderização de listas.
+  Com `track`, você fornece uma **chave única** que o Angular pode usar para identificar cada item da lista.
+
+- `ngValue` vs `value`:
+  - `[value]`: funciona bem com valores primitivos (string, number, boolean)
+
+   -`[ngValue]`: é usado quando você quer vincular qualquer tipo de dado, especialmente objetos
+   Exemplos:
+    ```ts
+    <option [ngValue]="pessoa">{{pessoa.nome}}</option>
+    ```
+    > Aqui, pessoa pode ser um objeto como `{ id: 1, nome: 'Maria' }`.
+
+Use [ngValue] quando o valor que você quer vincular ao ngModel não é um tipo primitivo (ou seja, é um objeto).
+> Nesse caso da tabuada a operação de `+` iria contatenar se usasse `value`.
+
