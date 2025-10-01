@@ -1,0 +1,38 @@
+
+  <header>
+  <h1>Cômodos</h1>
+  <hr>
+</header>
+<main>
+  <div class="comodos">
+    <section class="comodos__sala-estar">
+        <h2>Sala de estar</h2>
+        <img [src]="lampadaSala ? '/assets/images/lampadaAcesa.png' : '/assets/images/lampadaApagada.png'" alt="Lâmpada" width="100">
+        <br><br>
+        <button (click)="alternarLampada('sala')">
+          {{ lampadaSala ? 'Apagar' : 'Acender' }}
+        </button>
+    </section>
+
+    <section class="comodos__cozinha">
+      <h2>Cozinha</h2>
+      <img [src]="lampadaCozinha ? '/assets/images/lampadaAcesa.png' : '/assets/images/lampadaApagada.png'" alt="Lâmpada" width="100">
+      <br><br>
+      <button (click)="alternarLampada('cozinha')">
+        {{ lampadaCozinha ? 'Apagar' : 'Acender' }}
+      </button>
+    </section>
+
+    <section class="comodos__quarto">
+      <h2>Quarto</h2>
+      <img [src]="lampadaQuarto ? '/assets/images/lampadaAcesa.png' : '/assets/images/lampadaApagada.png'" alt="Lâmpada" width="100">
+      <br><br>
+      <button (click)="alternarLampada('quarto')">
+        {{ lampadaQuarto ? 'Apagar' : 'Acender' }}
+      </button>
+    </section>
+
+  </div>
+</main>
+
+ 
