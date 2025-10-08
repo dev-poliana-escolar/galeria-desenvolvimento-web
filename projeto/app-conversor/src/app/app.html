@@ -1,0 +1,20 @@
+<main>
+  <h1>Conversor de Temperatura</h1>
+  <hr>
+  <p>Digite a temperatura em Celsius:</p>
+  <input type="number" [(ngModel)] = "temp_celsius">
+  <button (click)="conversor()">Converter</button>
+
+  <hr>
+
+  A temperatura Fahrenheit é de {{temp_fahreinheit}}
+  @if (temp_celsius<=0 ){
+    <p>Está muito frio</p>
+  }
+  @else if (temp_celsius >= 30 ){
+    <p>Está muito quente!</p>
+  }
+  @else{
+    <p>Temperatura agradável</p>
+  }
+</main>
