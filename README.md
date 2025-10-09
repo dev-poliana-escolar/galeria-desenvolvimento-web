@@ -1,9 +1,7 @@
 # galeria-desenvolvimento-web
 [WIP] estudando angular
 
-# Como rodar qualquer projeto?
-
-## Como rodar o projeto
+## Como rodar qualquer projeto?
 
 1. **Pré-requisitos**
    ```bash
