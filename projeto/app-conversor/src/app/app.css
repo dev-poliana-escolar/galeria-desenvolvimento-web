@@ -1,3 +1,28 @@
 main{
     margin:60px
 }
+
+button{
+    background-color: green;
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    color: white;
+}
+
+input{
+    padding: 9px;
+    border-radius: 12px;
+    border: solid 1px gray;
+}
+
+.frio{
+    color: blue;
+}
+.quente{
+    color: red;
+}
+.agradavel{
+    color: green;
+}
