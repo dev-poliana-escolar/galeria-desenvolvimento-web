@@ -1,20 +1,25 @@
 <main>
-  <h1>Conversor de Temperatura</h1>
+  <div class="content">
+    <h1>Conversor de Temperatura</h1>
+    <hr>
+    <p>Digite a temperatura em Celsius:</p>
+    <input type="number" [(ngModel)] = "temp_celsius" (input)="resultado = false">
+    <button (click)="conversor()">Converter</button>
+  </div>
+  
   <hr>
-  <p>Digite a temperatura em Celsius:</p>
-  <input type="number" [(ngModel)] = "temp_celsius">
-  <button (click)="conversor()">Converter</button>
 
-  <hr>
+  <div  class="conversao" *ngIf="resultado">
+    <strong>A temperatura Fahrenheit é de:</strong> {{temp_fahrenheit}}
 
-  A temperatura Fahrenheit é de {{temp_fahreinheit}}
-  @if (temp_celsius<=0 ){
-    <p>Está muito frio</p>
-  }
-  @else if (temp_celsius >= 30 ){
-    <p>Está muito quente!</p>
-  }
-  @else{
-    <p>Temperatura agradável</p>
-  }
+    @if (temp_celsius<=0 || temp_celsius<=15 ){
+      <p class="frio">Está muito frio</p>
+    }
+    @else if (temp_celsius >= 30 ){
+      <p class="quente">Está muito quente!</p>
+    }
+    @else{
+      <p class="agradavel">Temperatura agradável</p>
+    }
+  </div>
 </main>
