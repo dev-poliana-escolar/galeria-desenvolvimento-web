@@ -202,3 +202,37 @@ bootstrapApplication(PlaygroundComponent);
 Use [ngValue] quando o valor que você quer vincular ao ngModel não é um tipo primitivo (ou seja, é um objeto).
 > Nesse caso da tabuada a operação de `+` iria contatenar se usasse `value`.
 
+---
+
+# Aula 13/10
+
+```ts
+import {Component} from '@angular/core';
+import {bootstrapApplication} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+
+@Component({
+  selector: 'app-root',
+  imports: [FormsModule, CommonModule],
+  template: `
+    <h2>Exemplo - Pipes </h2>
+  <p>Mensagem:</p>
+  <input [(ngModel)]="mensagem" />
+  <p>Data:</p>
+  <input type="date" [(ngModel)]="dataAniversario" />
+  <ul>
+    <li>{{mensagem | uppercase}}</li>
+    <li> {{ dataAniversario | date:'dd/MM/yyyy' }}</li>
+    <li> {{ valor | currency:'BRL' }}</li>
+  </ul>
+  `,
+})
+export class Playground {
+  mensagem="poliana inteligente; guarde essa data"
+  dataAniversario = new Date();
+  valor = 30.5;
+}
+
+bootstrapApplication(Playground);
+```
