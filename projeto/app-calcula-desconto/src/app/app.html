@@ -1,0 +1,21 @@
+<header>
+  <h1>Calcula Desconto</h1>
+  <hr>
+</header>
+<main>
+  <div>
+    <p>Digite o preco do produto: <input type="number" [(ngModel)]= "preco_produto"></p>
+    <p>Digite o percentual de desconto: <input type="number" [(ngModel)]= "percentual" ></p>
+
+    <div>
+      <button (click)="calculaDesconto()">Calcular</button>
+    </div>
+  </div>
+  <hr>
+  @if (resultado!=false){
+    <div class="resultado">
+   <p>O preço do produto com desconto é de: {{preco_final | currency:'BRL'}}</p>
+  </div>
+  }
+ 
+</main>
