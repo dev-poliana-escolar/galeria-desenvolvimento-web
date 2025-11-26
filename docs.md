@@ -1,6 +1,6 @@
 ---
-date: 17/09
-date: 22/09
+marp: true 
+theme: default 
 
 ---
 
@@ -201,4 +201,76 @@ bootstrapApplication(PlaygroundComponent);
 
 Use [ngValue] quando o valor que você quer vincular ao ngModel não é um tipo primitivo (ou seja, é um objeto).
 > Nesse caso da tabuada a operação de `+` iria contatenar se usasse `value`.
+
+# Signal e Computed
+
+## Signal
+
+Um sinal envolve-se em torno de um valor a fim de notificar os usuários ​quando esse valor muda. 
+
+> Os sinais podem ser graváveis ​​ou somente leitura .
+
+Portanto, `signal` uma estrutura que cria variáveis **reativas** , ou seja, quando o valor de uma variável gerenciada por Signal muda, a interface do usuário é automaticamente atualizada.
+
+---
+
+## Computed
+Usado para definir propriedades ou valores que são derivados de outros signals. Ele observa os signals aos quais está vinculado e, sempre que algum desses valores mudar, o valor computado também será atualizado automaticamente, sem que você precise manipular o processo manualmente.
+
+```ts
+import {Component, signal, computed, effect } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+   <h2> Temperatura</h2>
+   <button (click)="diminuir()">-</button>
+   {{ temp_atual() }}
+    <button (click)="aumentar()>+</button>
+    <button (click)='reset()'> Reiniciar</button>
+
+    <p> Mensagem {{ mensagem() }}</p>
+    <ul> 
+      @for(linha of logs; track linha){
+        <li>{{ linha }}</li>
+      }
+    </ul>
+  `,
+})
+export class conversor{
+  temp_atual = signal(22);
+  mensagem = computed(() => {
+    const temperatura = this.temp_atual();
+    if (temperatura< 18){
+      return 'Ambiente frio'
+    } else if (temperatura>25){
+      return 'Ambiente quente'
+    } else{
+      return 'Ambiente agradavel'
+    }
+  })
+
+  logs: string[]= [];
+
+  constructor(){
+    effect(()=>{
+      this.logs.push(`A temperatura foi ajustada para ${this.temp_atual()}`)
+    }); // reage as mudanças do signal
+  }
+
+  aumentar(){
+    this.temp_atual.update(t =>t+1); // t = temp_atual; para temp_atual +1
+  }
+
+  diminuir(){
+    this.temp_atual.update(t =>t-1);
+  }
+
+  reset(){
+    this.temp_atual.set(22);
+  }
+}
+
+
+```
 
